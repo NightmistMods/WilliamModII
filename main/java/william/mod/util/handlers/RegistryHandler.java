@@ -1,10 +1,12 @@
 package william.mod.util.handlers;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import william.mod.init.BlockInit;
 import william.mod.init.ItemInit;
 import william.mod.util.IHasModel;
 
@@ -18,6 +20,12 @@ public class RegistryHandler
 	}
 	
 	@SubscribeEvent
+	public static void onBlockRegister(RegistryEvent.Register<Block> event)
+	{
+		event.getRegistry().registerAll(BlockInit.BLOCKS.toArray(new Block[0]));
+	}
+	
+	@SubscribeEvent
 	public static void onModelRegister(ModelRegistryEvent event)
 	{
 		for(Item item : ItemInit.ITEMS)
@@ -25,6 +33,14 @@ public class RegistryHandler
 			if(item instanceof IHasModel)
 			{
 				((IHasModel)item).registerModels();
+			}
+		}
+		
+		for(Block block : BlockInit.BLOCKS)
+		{
+			if(block instanceof IHasModel)
+			{
+				((IHasModel)block).registerModels();
 			}
 		}
 	}

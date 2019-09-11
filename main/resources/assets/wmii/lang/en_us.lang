@@ -1,0 +1,7 @@
+//Items
+item.vasimion_ingot.name=Vasimion Ingot
+item.copper_ingot.name=Copper Ingot
+
+//Blocks
+tile.copper_block.name=Copper Block
+tile.vasimion_block.name=Vasimion Block
